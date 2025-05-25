@@ -13,7 +13,7 @@
 
         <h2>Teacher Registration Form</h2>
 
-        <form action="task3.html" method="get"> <!-- must be post -->
+        <form action="task3.html" method="post">
 
             <p>
                 <label for="fullname">Fullname: </label>
@@ -31,13 +31,13 @@
             </p>
 
             <p>
-                <label for="birthdate">Age: </label>
-                <input type="date" id="birthdate" name="birthdate">
+                <label for="birthdate">Date of Birth: </label>
+                <input type="date" id="birthdate" name="birthdate" required>
             </p>
 
             <p>
                 <label for="email">Email: </label>
-                <input type="email" id="email" name="email" placeholder="Enter email">
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
             </p>
 
             <p>
@@ -46,7 +46,7 @@
             </p>
 
             <p>
-                <label for="bgcolor">Choose Color: </label>
+                <label for="bgcolor">Color Preference: </label>
                 <input type="color" id="bgcolor" name="bgcolor">
             </p>
            
