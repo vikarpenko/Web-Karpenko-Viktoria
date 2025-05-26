@@ -1,0 +1,73 @@
+
+<!-- Завдання 1. Створити html файл з формою для додавання викладача. 
+     Форма повинна містити наступні поля: Повне ім’я, стать, дата народження, 
+     email, телефон, бажаний колір фону, країна, місто, коментар. -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+        <title>Teacher Registration Form</title>
+    </head>
+    <body>
+
+        <h2>Teacher Registration Form</h2>
+
+        <form action="task3.html" method="post">
+
+            <p>
+                <label for="fullname">Fullname: </label>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter fullname" required>
+            </p>
+
+            <p>
+                <label>Gender: </label>
+                <select id="gender" name="gender">
+                    <option value="">Choose gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="birthdate">Date of Birth: </label>
+                <input type="date" id="birthdate" name="birthdate" required>
+            </p>
+
+            <p>
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
+            </p>
+
+            <p>
+                <label for="number">Telephone: </label>
+                <input type="tel" id="number" name="number" placeholder="Enter number">  
+            </p>
+
+            <p>
+                <label for="bgcolor">Color Preference: </label>
+                <input type="color" id="bgcolor" name="bgcolor">
+            </p>
+           
+            <p>
+                <label for="country">Country: </label>
+                <input type="text" id="country" name="country" placeholder="Enter country">
+            </p>
+
+            <p>
+                <label for="city">City: </label>
+                <input type="text" id="city" name="city" placeholder="Enter city">
+            </p>
+            
+            <p>
+                <label for="comment">Comment: </label><br>
+                <textarea id="comment" name="comment" rows="4" cols="30" placeholder="Enter comment"></textarea>
+            </p>
+        
+            <button type="submit">Add Teacher</button>
+
+         </form>
+    </body>
+</html>
