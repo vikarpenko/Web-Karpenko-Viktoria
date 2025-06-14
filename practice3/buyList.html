@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BuyList</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="scalable-container">
+                <div class="shopping-cart">
+                    <article class="left-block">
+                        <section class="add-item">
+                            <form id="add-item-form">
+                                <label for="item-name" class="visually-hidden">Назва товару</label>
+                                <input type="text" id="item-name" name="item-name" placeholder="Enter item name">
+                                <button type="submit" class="tooltip-btn" data-tooltip="Add item">Add</button>
+                            </form>
+                        </section>
+                        <section class="item-list"><ul></ul></section>
+                    </article>
+                    <article class="right-block">
+                        <section class="remaining">
+                            <h2>Remaining</h2>
+                            <ul></ul>
+                        </section>
+                        <section class="purchased">
+                            <h2>Purchased</h2>
+                            <ul></ul>
+                        </section>
+                    </article>
+                </div>
+            </div>
+            <footer class="badge">
+                <h1>BuyList</h1>
+                <span class="author">Karpenko Viktoria</span>
+            </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
