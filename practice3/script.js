@@ -49,13 +49,13 @@ form.addEventListener('submit', event => {
 
 
 // ===== CREATE ITEM ===========================================================
-function createItem(name, quantity = 1, purchased = false) {
+function createItem(name, quantity = 1, available = false) {
     const li = document.createElement('li');
     li.className = 'item';
 
-    let nameSpan = createNameSpan(name, purchased);
-    const counter = createCounter(quantity, purchased);
-    const purchaseControls = createPurchaseSection(purchased);
+    let nameSpan = createNameSpan(name, available);
+    const counter = createCounter(quantity, available);
+    const purchaseControls = createPurchaseSection(available);
 
     const itemContent = document.createElement('div');
     itemContent.className = 'item-content';
@@ -65,29 +65,29 @@ function createItem(name, quantity = 1, purchased = false) {
     li.appendChild(nameSpan);
     li.appendChild(itemContent);
 
-    if (purchased) {
-        setupDeleteButton(li, purchaseControls.container);
-        enableItemNameEditing(nameSpan, newSpan => nameSpan = newSpan);
+    if (available) {
+        addDeleteButton(li, purchaseControls.container);
+        itemNameEditing(nameSpan, newSpan => nameSpan = newSpan);
     }
 
     itemList.appendChild(li);
 
     updateQuantity(counter, purchaseControls);
-    updatePurchase(purchaseControls, nameSpan, counter, li);
+    updateIsPurchase(purchaseControls, nameSpan, counter, li);
     updateStatistics();
 }
 
 
 // ===== ITEM NAME ====================================================
-function createNameSpan(name, isPurchased) {
+function createNameSpan(name, available) {
     const span = document.createElement('span');
-    span.className = 'item-name' + (isPurchased ? '' : ' bought');
+    span.className = 'item-name' + (available ? '' : ' bought');
     span.textContent = name;
     return span;
 }
 
 // ---- IF NOT PURCHASE ----------------------------------------------
-function enableItemNameEditing(span, onUpdate) {
+function itemNameEditing(span, onUpdate) {
     span.addEventListener('click', () => {
         const currentText = span.textContent;
         const input = document.createElement('input');
@@ -95,6 +95,7 @@ function enableItemNameEditing(span, onUpdate) {
         input.type = 'text';
         input.value = currentText;
         input.className = span.className;
+        if (span.classList.contains('bought')) input.classList.add('bought');
         span.replaceWith(input);
         input.focus();
 
@@ -103,18 +104,19 @@ function enableItemNameEditing(span, onUpdate) {
 
             newSpan.textContent = input.value.trim() || currentText;
             newSpan.className = input.className;
+            
             input.replaceWith(newSpan);
             onUpdate(newSpan);
 
+            itemNameEditing(newSpan, onUpdate);
             updateStatistics();
-            enableItemNameEditing(newSpan, onUpdate);
         });
     });
 }
 
 
 // ===== ITEM COUNT ====================================================
-function createCounter(quantity, purchased) {
+function createCounter(counter, purchased) {
     const container = document.createElement('div');
     container.className = 'counter';
 
@@ -125,7 +127,7 @@ function createCounter(quantity, purchased) {
 
     const count = document.createElement('span');
     count.className = 'count-quantity';
-    count.textContent = quantity;
+    count.textContent = counter;
 
     const plusBtn = document.createElement('button');
     plusBtn.className = 'quantity-btn quantity-btn-plus tooltip-btn' + (purchased ? '' : ' not-purchased');
@@ -141,17 +143,13 @@ function createCounter(quantity, purchased) {
 
 // ---- UPDATE ---------------------------------------------------------
 function updateQuantity(counter, purchaseControls) {
-    const updateMinusButton = () => {
-        counter.minusBtn.disabled = parseInt(counter.count.textContent, 10) <= 1;
-    };
-
     const update = (number) => {
         if (purchaseControls.toggle.getAttribute('aria-pressed') !== 'true') return;
         let count = parseInt(counter.count.textContent, 10) + number;
         if (count < 1) return;
-            counter.count.textContent = count;
-            updateMinusButton();
-            updateStatistics();
+        counter.count.textContent = count;
+        counter.minusBtn.disabled = parseInt(counter.count.textContent, 10) <= 1;
+        updateStatistics();
     };
 
     counter.plusBtn.addEventListener('click', () => update(1));
@@ -160,22 +158,22 @@ function updateQuantity(counter, purchaseControls) {
 
 
 // ===== IS PURCHASE ===================================================
-function createPurchaseSection(purchased) {
+function createPurchaseSection(available) {
     const container = document.createElement('div');
     container.className = 'item-purchase';
 
     const toggle = document.createElement('button');
     toggle.className = 'toggle tooltip-btn';
-    toggle.setAttribute('aria-pressed', purchased);
-    toggle.setAttribute('data-tooltip', purchased ? 'Mark as purchased' : 'Mark as not purchased');
-    toggle.textContent = purchased ? 'Not purchased' : 'Purchased';
+    toggle.setAttribute('aria-pressed', available);
+    toggle.setAttribute('data-tooltip', available ? 'Mark as purchased' : 'Mark as not purchased');
+    toggle.textContent = available ? 'Not purchased' : 'Purchased';
 
     container.appendChild(toggle);
     return {container, toggle};
 }
 
 // ---- UPDATE ---------------------------------------------------------
-function updatePurchase(purchaseControls, nameSpan, counter, li) {
+function updateIsPurchase(purchaseControls, nameSpan, counter, li) {
     purchaseControls.toggle.addEventListener('click', () => {
         const isPurchased = purchaseControls.toggle.getAttribute('aria-pressed') === 'true';
 
@@ -188,8 +186,8 @@ function updatePurchase(purchaseControls, nameSpan, counter, li) {
         counter.plusBtn.classList.toggle('not-purchased', isPurchased);
 
         if (!isPurchased) {
-            setupDeleteButton(li, purchaseControls.container);
-            enableItemNameEditing(nameSpan, newSpan => nameSpan = newSpan);
+            addDeleteButton(li, purchaseControls.container);
+            itemNameEditing(nameSpan, newSpan => nameSpan = newSpan);
         } else {
             removeDeleteButton(li);
 
@@ -220,7 +218,7 @@ function createDeleteButton(li) {
     return btn;
 }
 
-function setupDeleteButton(li, container) {
+function addDeleteButton(li, container) {
     let btn = li.querySelector('.delete');
     if (!btn) {
         btn = createDeleteButton(li);

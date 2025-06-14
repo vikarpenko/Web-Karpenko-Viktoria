@@ -141,16 +141,24 @@ li.item:last-of-type  {
 
 /* LEFT ITEM NAME------------------------- */
 .item-name {
-    flex: 1;
+    flex: 1 1 auto;
     padding: 0 0.3rem;
+    min-width: 70px;
     max-width: 90px;
     font-size: var(--font-size-base);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 input.editable-item {
-    border: 1px solid transparent;
-    padding: 0.3rem;
+    flex: 1 1 auto;
+    min-width: 70px;
+    max-width: 90px;
     width: 100%;
+    font-size: var(--font-size-base);
+    padding: 0.3rem;
+    border: 1px solid transparent;
     outline: none;
     cursor: text;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -174,6 +182,12 @@ input.editable-item:focus {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+}
+
+.count-quantity {
+    background-color: var(--main-background-color);
+    border-radius: 0.5rem;
+    padding: 0.3rem;
 }
 
 .quantity-btn {
