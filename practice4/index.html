@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Library</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <div class="container">
+        <input type="checkbox" id="filter-toggle" hidden>
+
+        <header class="site-header">
+            <h1 class="site-title ">Online Library</h1>
+
+            <div class="button-group">
+                <button class="sing-in-btn large">Sign In</button>
+                <label for="filter-toggle" class="filter-btn small normal">Filter</label>
+                
+                <div class="sort-dropdown small normal">
+                    <input type="checkbox" id="sort-toggle" hidden>
+
+                    <label for="sort-toggle" class="sort-btn">
+                        <span class="small">Sort</span>
+                        <span class="normal">Sort ▾</span>
+                    </label>
+
+                    <ul class="sort-menu">
+                        <li><a href="#" data-sort="title-asc">Title A-Z</a></li>
+                        <li><a href="#" data-sort="title-desc">Title Z-A</a></li>
+                        <li><a href="#" data-sort="author-asc">Author A-Z</a></li>
+                        <li><a href="#" data-sort="author-desc">Author Z-A</a></li>
+                        <li><a href="#" data-sort="year-asc">Year ↑</a></li>
+                        <li><a href="#" data-sort="year-desc">Year ↓</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <aside>
+                <form class="filters large">
+                    <h3 class="filter-title">Filter</h3>
+
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Genre</h4>
+                        <label><input type="checkbox" name="genre" value="roman" checked> Roman</label><br>
+                        <label><input type="checkbox" name="genre" value="non-fiction" checked> Non-Fiction</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Author</h4>
+                        <input type="text" name="author" placeholder="Enter author">
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Year</h4>
+                        <label><input type="checkbox" name="year" value="1900"> 1900</label><br>
+                        <label><input type="checkbox" name="year" value="2024"> 2024</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-subtitle">Language</h4>
+                        <label><input type="checkbox" name="language" value="en" checked> English</label><br>
+                        <label><input type="checkbox" name="language" value="ua"> Ukrainian</label>
+                    </div>
+                </form>
+            </aside>
+
+            <section class="main-block">
+                <div class="main-block-header">
+                    <h2 class="header-title">Featured Books</h2>
+                    
+                    <div class="sort-dropdown large">
+                        <input type="checkbox" id="sort-toggle-1" hidden>
+
+                        <label for="sort-toggle-1" class="sort-btn sort-btn-large">
+                            <span class="sort-label-text">Sort by:</span>
+                            <span class="sort-arrow">▾</span>
+                        </label>
+
+                        <ul class="sort-menu">
+                            <li><a href="#" data-sort="title-asc">Title A-Z</a></li>
+                            <li><a href="#" data-sort="title-desc">Title Z-A</a></li>
+                            <li><a href="#" data-sort="author-asc">Author A-Z</a></li>
+                            <li><a href="#" data-sort="author-desc">Author Z-A</a></li>
+                            <li><a href="#" data-sort="year-asc">Year ↑</a></li>
+                            <li><a href="#" data-sort="year-desc">Year ↓</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <ul class="book-list">
+                    <li class="book-entry">
+                        <picture>
+                            <source media="(max-width: 600px)" srcset="/practice4/img/small/TheGreatGatsbySmall.jpeg">
+                            <source media="(min-width: 900px)" srcset="/practice4/img/large/TheGreatGatsbyLarge.jpeg">
+                            <img loading="lazy" src="/practice4/img/normal/TheGreatGatsbyNormal.jpeg" alt="The Great Gatsby cover">
+                        </picture>
+                        <div class="book-info">
+                            <h3 class="book-name">The Great Gatsby</h3>
+                            <p class="book-author">F. Scott Fitzgerald</p>
+                        </div>
+                    </li>
+
+                    <li class="book-entry">
+                        <picture>
+                            <source media="(max-width: 600px)" srcset="/practice4/img/small/SapiensSmall.jpeg">
+                            <source media="(min-width: 900px)" srcset="/practice4/img/large/SapiensLarge.jpeg">
+                            <img loading="lazy" src="/practice4/img/normal/SapiensNormal.jpeg" alt="Sapiens cover">
+                        </picture>
+                        <div class="book-info">
+                            <h3 class="book-name">Sapiens</h3>
+                            <p class="book-author">Yuval Noah Harari</p>
+                        </div>
+                    </li>
+
+                    <li class="book-entry">
+                        <picture>
+                            <source media="(max-width: 600px)" srcset="/practice4/img/small/1984Small.webp">
+                            <source media="(min-width: 900px)" srcset="/practice4/img/large/1984Large.jpeg">
+                            <img loading="lazy" src="/practice4/img/normal/1984Normal.jpeg" alt="1984 cover">
+                        </picture>
+                        <div class="book-info">
+                            <h3 class="book-name">1984</h3>
+                            <p class="book-author">George Orwell</p>
+                        </div>
+                    </li>
+
+                    <li class="book-entry">
+                        <picture>
+                            <source media="(max-width: 600px)" srcset="/practice4/img/small/TheHungerGamesSmall.webp">
+                            <source media="(min-width: 900px)" srcset="/practice4/img/large/TheHungerGamesLarge.jpeg">
+                            <img loading="lazy" src="/practice4/img/normal/TheHungerGamesNormal.jpeg" alt="The Hunger Games cover">
+                        </picture>
+                        <div class="book-info">
+                            <h3 class="book-name">The Hunger Games</h3>
+                            <p class="book-author">Suzanne Collins</p>
+                        </div>
+                    </li>
+
+                    <li class="book-entry">
+                        <picture>
+                            <source media="(max-width: 500px)" srcset="/practice4/img/small/AliceSmall.jpeg">
+                            <source media="(min-width: 900px)" srcset="/practice4/img/large/AliceLarge.webp">
+                            <img loading="lazy" src="/practice4/img/normal/AliceSmall.webp" alt="Alice's Adventures in Wonderland cover">
+                        </picture>
+                        <div class="book-info">
+                            <h3 class="book-name">Alice in Wonderland</h3>
+                            <p class="book-author">Lewis Carroll</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
